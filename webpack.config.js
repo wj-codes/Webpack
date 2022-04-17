@@ -12,20 +12,21 @@ const {VueLoaderPlugin} = require('vue-loader');
 module.exports = {
     mode: 'development',
     // 进入
-    entry: path.join(__dirname, 'src', 'main.js'),
+    entry: './src/main.js',
     // devtool 文档格式化
     devtool:'inline-source-map',
     devServer: {
         port: 8080,
+        // 热更新
         hot:true,
         // 打开浏览器
         open:true,
-        static: path.join(__dirname, 'dist')
+        static: pathResolve('dist')
     },
     // 打包之后的文件
     output: {
         path: pathResolve('dist'),
-        filename: 'index.js'
+        filename: '[name].index.js'
     },
     resolve:{
         alias:{
@@ -44,7 +45,7 @@ module.exports = {
                 // exclude: /node_modules/
             },
             {
-                test: /\.js$/,
+                test: /\.js$/i,
                 loader: 'babel-loader',
                 // 定义范围
                 include: path.join(__dirname, 'src'),
@@ -64,16 +65,16 @@ module.exports = {
     },
     // 插件
     plugins: [
-        new VueLoaderPlugin(),
+        new CleanWebpackPlugin(),
         new HTMLWebpackPlugin({
             template: pathResolve('./public/index.html'),
             // 命名
             filename: 'index.html',
             title: 'Webpack vue'
         }),
+        new VueLoaderPlugin(),
         new MiniCSSExtractPlugin({
             filename: 'index.css'
         }),
-        new CleanWebpackPlugin()
     ]
 }

@@ -1,4 +1,4 @@
-import './index.less'
+
 console.log('进阶12121');
 const sum = (num1,num2)=>{
     return num1+num2;

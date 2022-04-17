@@ -1,6 +1,6 @@
 <template>
-    <div class="aboute">
-        <input type="text" v-model="text"/>
+    <div class="home">
+        home
     </div>
 </template>
 <script>
@@ -12,6 +12,9 @@ export default {
     }
 }
 </script>
-<style>
+<style lang="less" scoped>
+    .home{
+       
+    }
+</style>>
     
-</style>
